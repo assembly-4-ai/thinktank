@@ -70,16 +70,8 @@ boot_ai/                  # Main project directory (3 files, 6,767 bytes)
 |   |    
 |   |___ build/
 |       |
-|        ai_integration.o            ai_math_functions.o         ai_shell_interface.o        ai_tensor_core.o
-|        ai_test_suite.o             ai_transformer_core.o       apic.o                      compute_lib.o
-|        compute_stibs.o             compute_stubs.o             error.o                     error_injection.o
-|        fat32_runtime.o             float_compare.o             gdt_uefi.o                  gpu_compute.o
-|        gpu_discovery.o             gpu_dma.o                   gpu_initialization.o        gpu_irq.o
-|        gpu_mmio.o                  gpu_test_suite.o            hardware_accelerated_ai.o   idt64_pic.o
-|        irq_handlers.o              irq_handlers_pic.o          keyboard_pic.o              main_uefi_loader_pic.o
-|        memory_leak_detection.o     numa_pic.o                  paging64_uefi.o             pci.o
-|        pic_pic.o                   pmm64_pic.o                 screen_gop.o                shell.o
-|        simple_font.o               string_utils.o              test_harness.o              time_stamp.o
+|        ai_integration.o , ai_math_functions.o, ai_shell_interface.o, ai_tensor_core.o, ai_test_suite.o, ai_transformer_core.o, apic.o, compute_lib.o,
+|        compute_stibs.o, compute_stubs.o, error.o,error_injection.o, fat32_runtime.o, float_compare.o, gdt_uefi.o,gpu_compute.o, gpu_discovery.o, gpu_dma.o,      |        gpu_initialization.o, gpu_irq.o, gpu_mmio.o, gpu_test_suite.o, hardware_accelerated_ai.o idt64_pic.o, irq_handlers.o, irq_handlers_pic.o, keyboard_pic.o, |        main_uefi_loader_pic.o, memory_leak_detection.o, numa_pic.o, paging64_uefi.o, pci.o, pic_pic.o, pmm64_pic.o, screen_gop.o, shell.o simple_font.o,        |        string_utils.o, test_harness.o, time_stamp.o
 |
 |-arora_full_build.sh, README>md, ProjectArora.md, linker.ld, uefi.lds
 

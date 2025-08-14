@@ -82,7 +82,7 @@ to compare llama.cpp with llama in asm speed wise. Test results at end of this t
 find .md files with knowledge and project start till now events. Then we have a good base to build ai on.
 
 
-**Files in this category:**
+**start with the test by testing in qemuFiles in this category:**
 
 *   `main_uefi_loader_pic.asm`: The primary UEFI loader, designed to be position-independent.
 *   `pmm64_pic.asm`: The 64-bit Physical Memory Manager, also built as PIC.

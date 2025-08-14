@@ -12,6 +12,8 @@ boot_ai/                  # Main project directory (3 files, 6,767 bytes)
 │   │   ├── ai_test_suite.asm
 │   │   ├── ai_transformer_core.asm
 │   │   └── hardware_accelerated_ai.asm
+|   |   |__ ai_status.asm
+|   |
 │   ├── build/            # Compiled object files (42 files, 271,536 bytes)
 │   ├── compute/          # Compute-related components (4 files, 44,192 bytes)
 │   │   ├── compute_lib.asm
@@ -51,6 +53,7 @@ boot_ai/                  # Main project directory (3 files, 6,767 bytes)
 │   │   ├── gpu_irq.asm
 │   │   ├── gpu_mmio.asm
 │   │   └── gpu_test_suite.asm
+|   |   |__ gpu_registers.asm
 │   ├── includes/         # Include files (2 files, 23,639 bytes)
 │   │   ├── boot_defs_temp.inc
 │   │   └── boot_defs_uefi.inc
@@ -62,9 +65,10 @@ boot_ai/                  # Main project directory (3 files, 6,767 bytes)
 │       ├── simple_font.asm
 │       ├── string_utils.asm
 │       └── time_stamp.asm
+|       |__ shell_utils.asm
+|       |__ hex_utils.asm
 |-arora_full_build.sh
-# Total: 92 files, 938,665 bytes
-# Free Space: 69,621,719,040 byte
+
 
 All .asm files have been compiled without error. For the current task the files concerning the bootloading, paging, mapping, initialization
 bare metal of the hardware, pci bus, memory access and allocation, error handling, irq/dma/io handling, keyboardd, screen, text string (hex, chahracters, cursor etc), must be functional at the highest performance rate, the system must be robust and fast. No gui's are needed only the shell console. Your task now is reading the rest of this file, store knowledge in your knowledge base and complete testing till the shell's command line is working. The bootloader is efi format wich you need to built first using nasm, ld , dd, mtools and the build_arora_full.sh script. The asm files are created by as editor using notepad++ and the shell in msys64-mingw64-ucrt-x86_64-nasm, qemu, gdb. Linking gives a list of errors mostly undefined or not made yet routines. The rest you will find out after you run build_arora_full.sh. Do not use code from outside boot_ai, only use files in the branched oversight.Before reading further here are the critical rules: No use of interupts, system calls, libraries, foreign coding.Every code instruction on a new line easy to understand inline comments. All coding is has to be custom made. Not allowed are: sys calls, libs and bios interupts!! Allowed are: i/o, dma, irq, use off opcodes and code to get cpu cycles optimized, coded efficient,comented, every instruction code use a newline all is about speed. Code must be modulair, bare metal assembly with msys64 mingw64-x86_64  nasm as compiler, msys64 mingw64-x86_64 qemu as emulator and msys64 mingw64-x86_64 gdb as debugger based on UEFI both win 11 and linux based version of arora. Keep your progress well documented. Afterlinking to image file you use gdb and qemu and custom test suites for testing code functionality. Also do not forget we are creating this program 

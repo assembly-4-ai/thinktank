@@ -1,6 +1,5 @@
 # Project Arora File Categorization
-Hi manus,
-user updated the project resulting the structure:
+updated the project resulting the structure:
 
 
 
@@ -67,15 +66,8 @@ boot_ai/                  # Main project directory (3 files, 6,767 bytes)
 # Total: 92 files, 938,665 bytes
 # Free Space: 69,621,719,040 byte
 
-All .asm files have been compiled without error but with warnings that need fixed. Linking gives a list of errors mostly undefined 
-or not made yet routines. Few of the files you were working on before sandbox crash: string_utils.asm, image_base.asm, time_stamp.asm. 
-The rest you will find out after you run build_arora_full.sh. Do not use code from outside boot_ai, only use files in the branched oversight.
-Before reading further here are the critical rules: No use of interupts, system calls, libraries, foreign coding.Every code instruction on a new line 
-easy to understand inline comments. All coding is has to be custom made. Not allowed are: sys calls, libs and bios interupts!! 
-Allowed are: i/o, dma, irq, use off opcodes and code to get cpu cycles optimized, coded efficient,comented, every instruction code use a newline 
-all is about speed. Code must be modulair, bare metal assembly with msys64 mingw64-x86_64  nasm as compiler, msys64 mingw64-x86_64 qemu as emulator 
-and msys64 mingw64-x86_64 gdb as debugger based on UEFI both win 11 and linux based version of arora. Keep your progress well documented. After
-linking to image file you use gdb and qemu and custom test suites for testing code functionality. Also do not forget we are creating this program 
+All .asm files have been compiled without error. For the current task the files concerning the bootloading, paging, mapping, initialization
+bare metal of the hardware, pci bus, memory access and allocation, error handling, irq/dma/io handling, keyboardd, screen, text string (hex, chahracters, cursor etc), must be functional at the highest performance rate, the system must be robust and fast. No gui's are needed only the shell console. Your task now is reading the rest of this file, store knowledge in your knowledge base and complete testing till the shell's command line is working. The bootloader is efi format wich you need to built first using nasm, ld , dd, mtools and the build_arora_full.sh script. The asm files are created by as editor using notepad++ and the shell in msys64-mingw64-ucrt-x86_64-nasm, qemu, gdb. Linking gives a list of errors mostly undefined or not made yet routines. The rest you will find out after you run build_arora_full.sh. Do not use code from outside boot_ai, only use files in the branched oversight.Before reading further here are the critical rules: No use of interupts, system calls, libraries, foreign coding.Every code instruction on a new line easy to understand inline comments. All coding is has to be custom made. Not allowed are: sys calls, libs and bios interupts!! Allowed are: i/o, dma, irq, use off opcodes and code to get cpu cycles optimized, coded efficient,comented, every instruction code use a newline all is about speed. Code must be modulair, bare metal assembly with msys64 mingw64-x86_64  nasm as compiler, msys64 mingw64-x86_64 qemu as emulator and msys64 mingw64-x86_64 gdb as debugger based on UEFI both win 11 and linux based version of arora. Keep your progress well documented. Afterlinking to image file you use gdb and qemu and custom test suites for testing code functionality. Also do not forget we are creating this program 
 to compare llama.cpp with llama in asm speed wise. Test results at end of this testing fase in benchmarking cpp<--->asm versions. in the \docs you can 
 find .md files with knowledge and project start till now events. Then we have a good base to build ai on.
 
@@ -86,7 +78,7 @@ find .md files with knowledge and project start till now events. Then we have a 
 *   `pmm64_pic.asm`: The 64-bit Physical Memory Manager, also built as PIC.
 *   `numa_pic.asm`: NUMA (Non-Uniform Memory Access) related code, PIC compliant.
 *   `idt64_pic.asm`: Interrupt Descriptor Table setup for 64-bit, PIC compliant.
-*   `pic_pic.asm`: Likely a core PIC utility or a placeholder for PIC-related functions.
+*   `pic_pic.asm`:  a core PIC utility, placeholder for PIC-related functions.
 *   `keyboard_pic.asm`: Keyboard driver, PIC compliant.
 
 **Relationship:** These files form the core, low-level, and hardware-interacting components of the OS that need to be flexible in their
@@ -132,7 +124,7 @@ Many files, while not having these specific suffixes, are integral to the projec
 *   **`uefi.lds`**: The linker script for creating the UEFI executable, defining memory sections and symbol placement.
 
 
-## My Todo List for Future Reference
+## Todo List for Future Reference
 
 Given the current state and the persistent sandbox environment issues, here is a detailed todo list for continuing the Project Arora build process:
 
@@ -191,5 +183,5 @@ Given the current state and the persistent sandbox environment issues, here is a
     *   Provide instructions for running the OS in QEMU.
     *   Offer to upload the `build` directory or the `arora_disk.img` for the user's convenience.
 
-This detailed plan should guide the process effectively once a stable execution environment is established. The current blocking issue remains the persistent EOF errors in the sandbox shell. Once that is resolved, this plan can be executed step-by-step.
+This detailed plan should guide the process effectively once a stable execution environment is established. This plan must be executed step-by-step.
 

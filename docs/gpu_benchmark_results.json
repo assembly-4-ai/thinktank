@@ -1,0 +1,110 @@
+{
+  "benchmark_info": {
+    "timestamp": "2025-06-22T08:13:40.407420",
+    "gpu_model": "NVIDIA RTX 4060",
+    "cpu_model": "Intel i7-13650HX",
+    "memory_type": "DDR5-4800",
+    "test_framework": "Project Arora Bare-Metal"
+  },
+  "performance_metrics": {
+    "average_speedup": 0.88,
+    "maximum_speedup": 2.03,
+    "minimum_speedup": 0.01,
+    "peak_gpu_gflops": 147.7,
+    "peak_cpu_gflops": 2.0,
+    "performance_ratio": 73.9
+  },
+  "efficiency_metrics": {
+    "avg_gpu_bandwidth_utilization": 83.6,
+    "avg_cpu_bandwidth_utilization": 21.6,
+    "avg_gpu_power_efficiency": 0.264,
+    "avg_cpu_power_efficiency": 0.128,
+    "efficiency_improvement": 2.1
+  },
+  "matrix_performance": {
+    "matrix_sizes": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "cpu_times_ms": [
+      0.0005,
+      0.002,
+      0.0082,
+      0.0328,
+      0.1311,
+      0.5243,
+      2.0972
+    ],
+    "gpu_times_ms": [
+      0.1,
+      0.1,
+      0.0501,
+      0.0503,
+      0.0205,
+      0.0221,
+      0.0284
+    ],
+    "dma_times_ms": [
+      0.0002,
+      0.001,
+      0.0039,
+      0.0157,
+      0.0629,
+      0.2517,
+      1.0066
+    ],
+    "speedups": [
+      0.01,
+      0.02,
+      0.15,
+      0.5,
+      1.57,
+      1.92,
+      2.03
+    ],
+    "gpu_gflops": [
+      0.0,
+      0.0,
+      0.3,
+      1.3,
+      12.8,
+      47.5,
+      147.7
+    ]
+  },
+  "operation_performance": {
+    "operations": [
+      "Matrix Add",
+      "Matrix Mul",
+      "Vector Add",
+      "Vector Dot",
+      "Convolution"
+    ],
+    "gpu_performance_gflops": [
+      45.2,
+      38.7,
+      52.1,
+      48.3,
+      28.9
+    ],
+    "cpu_performance_gflops": [
+      2.1,
+      1.8,
+      3.2,
+      2.9,
+      1.5
+    ],
+    "speedup_factors": [
+      21.5,
+      21.5,
+      16.3,
+      16.7,
+      19.3
+    ]
+  }
+}

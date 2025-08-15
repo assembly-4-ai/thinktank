@@ -7,6 +7,7 @@ set -e
 
 # Create build directory if it doesn't exist
 mkdir -p build
+rm -rf build/*
 
 echo "Compiling Project Arora modules..."
 
@@ -32,7 +33,6 @@ nasm -f elf64 -I includes/ -o build/pmm_utils.o core/pmm_utils.asm
 
 # Compute Modules
 nasm -f elf64 -I includes/ -o build/compute_lib.o compute/compute_lib.asm
-nasm -f elf64 -I includes/ -o build/compute_stibs.o compute/compute_stubs.asm
 nasm -f elf64 -I includes/ -o build/float_compare.o compute/float_compare.asm
 nasm -f elf64 -I includes/ -o build/test_harness.o compute/test_harness.asm
 
@@ -60,7 +60,7 @@ nasm -f elf64 -I includes/ -o build/gpu_test_suite.o gpu/gpu_test_suite.asm
 
 # Keyboard Module
 nasm -f elf64 -I includes/ -o build/keyboard_pic.o core/keyboard_pic.asm
-nasm -f elf64 -I includes/ -o build/itoa64.o utils/itoa64.asm
+nasm -f elf64 -I includes/ -o build/itoa64.o core/itoa64.asm
 nasm -f elf64 -I includes/ -o build/hex_utils.o utils/hex_utils.asm
 nasm -f elf64 -I includes/ -o build/string_utils.o utils/string_utils.asm
 nasm -f elf64 -I includes/ -o build/time_stamp.o utils/time_stamp.asm
@@ -68,7 +68,7 @@ nasm -f elf64 -I includes/ -o build/simple_font.o utils/simple_font.asm
 
 # Shell Module
 nasm -f elf64 -I includes/ -o build/shell.o shell/shell.asm
-nasm -f elf64 -I includes/ -o build/shell_utils.o shell/shell_utils.asm
+nasm -f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
 
 echo "Linking Project Arora UEFI executable..."
 
@@ -95,7 +95,6 @@ ld -T uefi.lds -o build/arora_full.efi \
    build/error_injection.o \
    build/memory_leak_detection.o \
    build/pmm_utils.o \
-   build/float_compare.o \
    build/ai_tensor_core.o \
    build/ai_math_functions.o \
    build/ai_transformer_core.o \
@@ -114,7 +113,8 @@ ld -T uefi.lds -o build/arora_full.efi \
    build/keyboard_pic.o \
    build/itoa64.o \
    build/hex_utils.o \
-   build/simple_font.o
+   build/simple_font.o \
+   build/float_compare.o
 
 echo "Creating disk image for QEMU testing..."
 

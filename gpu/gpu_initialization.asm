@@ -20,7 +20,8 @@ extern gpu_mmio_write_reg32
 extern gpu_check_device_ready
 extern gpu_reset_device
 extern gpu_enable_device
-extern GPU_STATUS_REGISTER
+
+%include "gpu/gpu_registers.asm"
 
 ; Global exports
 global gpu_init_system

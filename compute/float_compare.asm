@@ -6,7 +6,7 @@ default rel
 
 ; Export floating-point comparison functions
 global init_float_compare
-global compare_float_epsilon
+global my_float_compare
 global compare_matrices_epsilon
 global set_epsilon_value
 
@@ -89,7 +89,7 @@ set_epsilon_value:
 ; Input: XMM0 = First value, XMM1 = Second value
 ; Output: RAX = 0 if equal within epsilon, 1 if different
 ;--------------------------------------------------------------------------
-global compare_float_epsilon:
+my_float_compare:
     push rbp
     mov rbp, rsp
     
@@ -104,17 +104,17 @@ global compare_float_epsilon:
     ; Compare with epsilon
     movss xmm0, [rel current_epsilon]
     comiss xmm3, xmm0
-    jbe .equal
+    jbe equal
     
     ; Values differ by more than epsilon
     mov rax, 1
-    jmp .done
+    jmp done_compare
     
-.equal:
+equal:
     ; Values are equal within epsilon
     xor rax, rax
     
-.done:
+done_compare:
     pop rbp
     ret
 
@@ -139,10 +139,10 @@ compare_matrices_epsilon:
     ; Initialize index
     xor rbx, rbx
     
-.compare_loop:
+compare_loop:
     ; Check if we've reached the end
     cmp rbx, r14
-    jge .matrices_equal
+    jge matrices_equal
     
     ; Load values from matrices
     movss xmm0, [r12 + rbx * 4]
@@ -165,22 +165,22 @@ compare_matrices_epsilon:
     
     ; Check result
     test rax, rax
-    jz .next_element
+    jz next_element
     
     ; Values differ - return index+1 (to distinguish from success case)
     lea rax, [rbx + 1]
-    jmp .done
+    jmp done
     
-.next_element:
+next_element:
     ; Move to next element
     inc rbx
-    jmp .compare_loop
+    jmp compare_loop
     
 matrices_equal:
     ; All elements equal within epsilon
     xor rax, rax
     
-.done:
+done:
     pop r14
     pop r13
     pop r12

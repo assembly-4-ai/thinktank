@@ -91,7 +91,7 @@ section .text
     extern scr64_print_string
     extern shell_print_newline
     extern get_timestamp
-    extern float_compare_epsilon
+extern my_float_compare
 
 ai_run_test_suite:
     ; Run complete AI test suite
@@ -531,7 +531,7 @@ ai_compare_float_result:
     
     ; Use epsilon-based comparison
     movsd xmm2, [TEST_EPSILON]
-    call float_compare_epsilon
+    call my_float_compare
     
     pop rbp
     ret

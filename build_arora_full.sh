@@ -72,7 +72,10 @@ nasm -g f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
 
 echo "Linking Project Arora UEFI executable..."
 
-ld -T uefi.lds -o build/arora_full.efi \
+ld -T 
+   uefi.lds -o 
+   build/rt0-efi-x86_64.o \
+   build/arora_full.efi \
    build/main_uefi_loader_pic.o \
    build/pmm64_pic.o \
    build/numa_pic.o \

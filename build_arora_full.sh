@@ -67,8 +67,8 @@ nasm -g -f elf64 -I includes/ -o build/time_stamp.o utils/time_stamp.asm
 nasm -g -f elf64 -I includes/ -o build/simple_font.o utils/simple_font.asm
 
 # Shell Module
-nasm --g f elf64 -I includes/ -o build/shell.o shell/shell.asm
-nasm --g f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
+nasm -g f elf64 -I includes/ -o build/shell.o shell/shell.asm
+nasm -g f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
 
 echo "Linking Project Arora UEFI executable..."
 

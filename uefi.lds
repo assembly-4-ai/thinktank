@@ -48,5 +48,3 @@ SECTIONS
         *(.rela*)
     }
 }
-
-

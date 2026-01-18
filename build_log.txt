@@ -31,7 +31,11 @@ gpu/gpu_discovery.asm:339: warning: signed dword value exceeds bounds [-w+number
 gpu/gpu_discovery.asm:372: warning: signed dword value exceeds bounds [-w+number-overflow]
 gpu/gpu_dma.asm:252: warning: signed dword immediate exceeds bounds [-w+number-overflow]
 gpu/gpu_dma.asm:252: warning: dword data exceeds bounds [-w+number-overflow]
-Linking Project Arora UEFI executable...
-ld: warning: cannot find entry symbol _start; defaulting to 0000000000000000
-Build process complete! You can now test with QEMU:
-qemu-system-x86_64 -bios /usr/share/ovmf/OVMF.fd -hda build/arora_disk.img -m 4G -smp 4
+Linking Project Arora ELF executable...
+ld: warning: build/float_compare.o: missing .note.GNU-stack section implies executable stack
+ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+ld: /usr/lib/crt0-efi-x86_64.o: in function `_start':
+/usr/src/gnu-efi-3.0.15-1build1//gnuefi/crt0-efi-x86_64.S:47:(.text+0x9): undefined reference to `ImageBase'
+ld: /usr/src/gnu-efi-3.0.15-1build1//gnuefi/crt0-efi-x86_64.S:48:(.text+0x10): undefined reference to `_DYNAMIC'
+ld: build/main_uefi_loader_pic.o: in function `efi_main':
+/app/core//core/main_uefi_loader_pic.asm:730:(.text+0x54a): undefined reference to `shell_run'

@@ -16,6 +16,7 @@ global uefi_AllocatePagesWrapper ; Export the UEFI AllocatePages wrapper
 %include "boot_defs_uefi.inc" ; Additional UEFI-specific definitions
 
 ; --- Externals ---
+extern scr64_print_string, scr64_print_hex, scr64_print_dec, scr64_print_char, putpixel
 
 ; Memory Management
 extern pmm64_init_uefi, pmm_alloc_frame, pmm_free_frame, pmm_mark_region_used

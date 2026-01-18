@@ -67,16 +67,19 @@ nasm -g -f elf64 -I includes/ -o build/time_stamp.o utils/time_stamp.asm
 nasm -g -f elf64 -I includes/ -o build/simple_font.o utils/simple_font.asm
 
 # Shell Module
-nasm -g f elf64 -I includes/ -o build/shell.o shell/shell.asm
-nasm -g f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
+nasm -g -f elf64 -I includes/ -o build/shell.o shell/shell.asm
+nasm -g -f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
 
-echo "Linking Project Arora UEFI executable..."
+# Demo Module
+nasm -g -f elf64 -I includes/ -o build/demo.o demo/demo.asm
 
-ld -T 
-   uefi.lds -o 
-   build/rt0-efi-x86_64.o \
-   build/arora_full.efi \
+echo "Linking Project Arora ELF executable..."
+
+ld -T uefi.lds -o build/arora_full.elf /usr/lib/crt0-efi-x86_64.o \
    build/main_uefi_loader_pic.o \
+   build/shell.o \
+   build/shell_utils.o \
+   build/demo.o \
    build/pmm64_pic.o \
    build/numa_pic.o \
    build/paging64_uefi.o \
@@ -90,8 +93,6 @@ ld -T
    build/screen_gop.o \
    build/string_utils.o \
    build/time_stamp.o \
-   build/shell.o \
-   build/shell_utils.o \
    build/acpi_runtime.o \
    build/compute_lib.o \
    build/test_harness.o \
@@ -117,7 +118,10 @@ ld -T
    build/itoa64.o \
    build/hex_utils.o \
    build/simple_font.o \
-   build/float_compare.o
+   build/float_compare.o /usr/lib/libgnuefi.a /usr/lib/libefi.a
+
+echo "Converting ELF to PE for UEFI..."
+objcopy -O pei-x86-64 build/arora_full.elf build/arora_full.efi
 
 echo "Creating disk image for QEMU testing..."
 

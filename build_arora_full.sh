@@ -12,6 +12,7 @@ rm -rf build/*
 echo "Compiling Project Arora modules..."
 
 # Core Modules
+nasm -g -f elf64 -I includes/ -o build/rt0-efi-x86_64.o core/rt0-efi-x86_64.asm
 nasm -g -f elf64 -I includes/ -o build/main_uefi_loader_pic.o core/main_uefi_loader_pic.asm
 nasm -g -f elf64 -I includes/ -o build/pmm64_pic.o core/pmm64_pic.asm
 nasm -g -f elf64 -I includes/ -o build/numa_pic.o core/numa_pic.asm
@@ -67,15 +68,13 @@ nasm -g -f elf64 -I includes/ -o build/time_stamp.o utils/time_stamp.asm
 nasm -g -f elf64 -I includes/ -o build/simple_font.o utils/simple_font.asm
 
 # Shell Module
-nasm -g f elf64 -I includes/ -o build/shell.o shell/shell.asm
-nasm -g f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
+nasm -g -f elf64 -I includes/ -o build/shell.o shell/shell.asm
+nasm -g -f elf64 -I includes/ -o build/shell_utils.o utils/shell_utils.asm
 
 echo "Linking Project Arora UEFI executable..."
 
-ld -T 
-   uefi.lds -o 
+ld -T uefi.lds -o build/arora_full.efi \
    build/rt0-efi-x86_64.o \
-   build/arora_full.efi \
    build/main_uefi_loader_pic.o \
    build/pmm64_pic.o \
    build/numa_pic.o \
@@ -88,6 +87,9 @@ ld -T
    build/fat32_runtime.o \
    build/error.o \
    build/screen_gop.o \
+   build/apic.o \
+   build/irq_handlers.o \
+   build/irq_handlers_pic.o \
    build/string_utils.o \
    build/time_stamp.o \
    build/shell.o \
